@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lisp | Jianshi Huang's Blog]]></title>
   <link href="http://huangjs.github.com/blog/categories/lisp/atom.xml" rel="self"/>
   <link href="http://huangjs.github.com/"/>
-  <updated>2012-08-21T12:45:07-07:00</updated>
+  <updated>2012-08-21T12:45:53-07:00</updated>
   <id>http://huangjs.github.com/</id>
   <author>
     <name><![CDATA[Jianshi Huang]]></name>
@@ -28,7 +28,7 @@
 
 <p>This is a very simple one. Tail-calls are in fact gotos, but in a structured way. The point is to shadow the function definition with a local macro (nlet-tc as follows) that expands to goto.</p>
 
-<p>``` [common-lisp]
+<p>``` common-lisp
 (defmacro nlet-tc (name bindings &amp;body body)
   (alexandria:with-unique-names (entry return)</p>
 
@@ -71,7 +71,7 @@
 
 <p>when expanded, will be:</p>
 
-<p>```[common-lisp]
+<p>```common-lisp
 (DEFUN SUM (N ACC)
   (MACROLET ((SUM (&amp;REST ARGS)</p>
 
@@ -95,7 +95,7 @@
 
 <p>The following benchmark</p>
 
-<p>```[common-lisp]
+<p>```common-lisp
 (defun-tc test (n acc)
   (declare (fixnum n acc)</p>
 
@@ -116,7 +116,7 @@
 
 <p>A natural improvement is to automatically add the type declaration in the "psetf" form, the following trick does that, though it turned out to be less useful in the next task.</p>
 
-<p>```[common-lisp]
+<p>```common-lisp
 (defun variable-type (var &amp;optional env)
   nil
   #+sbcl (cdr (assoc 'cl:type (nth-value 2 (sb-cltl2:variable-information var env)))))</p>
@@ -161,7 +161,7 @@ My idea is to define an anonymous local function that includes all the definitio
 
 <p>Here's the code:</p>
 
-<p>```[common-lisp]
+<p>```common-lisp
 (defmacro labels-tc (definitions &amp;body body)
   (multiple-value-bind (names argss bodies jump-tags)</p>
 
@@ -210,7 +210,7 @@ My idea is to define an anonymous local function that includes all the definitio
 
 <p>So again, example:</p>
 
-<p>```[common-lisp]
+<p>```common-lisp
 (labels-tc ((oddp (n)</p>
 
 <pre><code>       (declare (fixnum n))
@@ -229,7 +229,7 @@ My idea is to define an anonymous local function that includes all the definitio
 
 <p>will be expanded to:</p>
 
-<p>```[common-lisp]
+<p>```common-lisp
 (labels ((#:entry (#:name &amp;key n m)</p>
 
 <pre><code>       (block #:exit
@@ -271,7 +271,7 @@ My idea is to define an anonymous local function that includes all the definitio
 
 <p>Ok, here's the fun part, benchmark and verifying the implementation in different implementations. Here's the benchmark code:</p>
 
-<p>```[common-lisp]
+<p>```common-lisp
 (defun test (n)
   (declare (fixnum n)</p>
 
