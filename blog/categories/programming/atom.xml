@@ -4,7 +4,7 @@
   <title><![CDATA[Category: programming | Jianshi Huang's Blog]]></title>
   <link href="http://huangjs.github.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://huangjs.github.com/"/>
-  <updated>2012-08-21T12:52:23-07:00</updated>
+  <updated>2012-08-21T12:54:07-07:00</updated>
   <id>http://huangjs.github.com/</id>
   <author>
     <name><![CDATA[Jianshi Huang]]></name>
@@ -20,7 +20,19 @@
     <id>http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp</id>
     <content type="html"><![CDATA[<p>(This is an very old blog, I don't blog much, maybe only when I'm drunk, which is rare...)</p>
 
-<p>Two weeks ago, a post from the Lisp-cn mailing list asked whether Emacs's elisp implementation supports tail-call optimization. Though the answer turned out to be "nope", I broke into the conversation and said he could implement his own version of abstraction easily in Lisp. Then I followed up a new post of a small quiz for implementing tail-call optimized (but crippled) "defun" (or "define" for Schemes). Maybe because it's not a very interesting quiz, only one person showed up with his solution, and eventually it became my own amusement. However, the result that shows the optimization done by several Common Lisp implementations is not boring at least. And it can be of help when using implementations that doesn't do tail-call optimization such as ABCL or ECL.</p>
+<p>Two weeks ago, a post from the Lisp-cn mailing list asked whether
+Emacs's elisp implementation supports tail-call optimization. Though
+the answer turned out to be "nope", I broke into the conversation and
+said he could implement his own version of abstraction easily in Lisp.</p>
+
+<p>Then I followed up a new post of a small quiz for implementing
+tail-call optimized (but crippled) "defun" (or "define" for Schemes).
+Maybe because it's not a very interesting quiz, only one person showed
+up with his solution, and eventually it became my own amusement.
+However, the result that shows the optimization done by several Common
+Lisp implementations is not boring at least. And it can be of help
+when using implementations that doesn't do tail-call optimization such
+as ABCL or ECL.</p>
 
 <h3>Task 1 Self-recursion Optimization</h3>
 

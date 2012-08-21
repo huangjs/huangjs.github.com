@@ -109,7 +109,19 @@
 
   <div class="entry-content"><p>(This is an very old blog, I don&#8217;t blog much, maybe only when I&#8217;m drunk, which is rare&#8230;)</p>
 
-<p>Two weeks ago, a post from the Lisp-cn mailing list asked whether Emacs&#8217;s elisp implementation supports tail-call optimization. Though the answer turned out to be &#8220;nope&#8221;, I broke into the conversation and said he could implement his own version of abstraction easily in Lisp. Then I followed up a new post of a small quiz for implementing tail-call optimized (but crippled) &#8220;defun&#8221; (or &#8220;define&#8221; for Schemes). Maybe because it&#8217;s not a very interesting quiz, only one person showed up with his solution, and eventually it became my own amusement. However, the result that shows the optimization done by several Common Lisp implementations is not boring at least. And it can be of help when using implementations that doesn&#8217;t do tail-call optimization such as ABCL or ECL.</p>
+<p>Two weeks ago, a post from the Lisp-cn mailing list asked whether
+Emacs&#8217;s elisp implementation supports tail-call optimization. Though
+the answer turned out to be &#8220;nope&#8221;, I broke into the conversation and
+said he could implement his own version of abstraction easily in Lisp.</p>
+
+<p>Then I followed up a new post of a small quiz for implementing
+tail-call optimized (but crippled) &#8220;defun&#8221; (or &#8220;define&#8221; for Schemes).
+Maybe because it&#8217;s not a very interesting quiz, only one person showed
+up with his solution, and eventually it became my own amusement.
+However, the result that shows the optimization done by several Common
+Lisp implementations is not boring at least. And it can be of help
+when using implementations that doesn&#8217;t do tail-call optimization such
+as ABCL or ECL.</p>
 
 <h3>Task 1 Self-recursion Optimization</h3>
 
