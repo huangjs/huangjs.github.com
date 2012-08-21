@@ -4,7 +4,7 @@
   <title><![CDATA[Jianshi Huang's Blog]]></title>
   <link href="http://huangjs.github.com/atom.xml" rel="self"/>
   <link href="http://huangjs.github.com/"/>
-  <updated>2012-08-21T12:49:21-07:00</updated>
+  <updated>2012-08-21T12:52:23-07:00</updated>
   <id>http://huangjs.github.com/</id>
   <author>
     <name><![CDATA[Jianshi Huang]]></name>
@@ -433,15 +433,58 @@
 
 <p>And here&#8217;s the result:</p>
 
-<p>Common Lisp labels version (sec)    labels-tc version (sec)
-SBCL 1.0.48 (64bit) 0.599   0.594
-ABCL 0.25 (OpenJDK 1.6.022) (java.lang.StackOverflowError)  13.171
-AllegroCL 8.2 64bit 10.17   2.32
-ClozureCL 1.7 64bit 1.664   0.767
-Lispworks 6.0.1 64bit   3.657   2.468
-Clisp 2.48  (Lisp stack overflow. RESET)    27.002
-CMUCL 20B (32bit)   0.57    0.42
-ECL 11.1.1  (Segmentation fault)    16.218</p>
+<table border="2" rules="groups" cellspacing="0" cellpadding="6"><colgroup> <col align="left" /> <col align="right" /> <col align="right" /> </colgroup>
+<thead>
+<tr>
+<th scope="col">Common Lisp</th>
+<th scope="col">labels version (sec)</th>
+<th scope="col">labels-tc version (sec)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SBCL 1.0.48 (64bit)</td>
+<td>0.599</td>
+<td>0.594</td>
+</tr>
+<tr>
+<td>ABCL 0.25 (OpenJDK 1.6.0<sub>22</sub>)</td>
+<td>(java.lang.StackOverflowError)</td>
+<td>13.171</td>
+</tr>
+<tr>
+<td>AllegroCL 8.2 64bit</td>
+<td>10.17</td>
+<td>2.32</td>
+</tr>
+<tr>
+<td>ClozureCL 1.7 64bit</td>
+<td>1.664</td>
+<td>0.767</td>
+</tr>
+<tr>
+<td>Lispworks 6.0.1 64bit</td>
+<td>3.657</td>
+<td>2.468</td>
+</tr>
+<tr>
+<td>Clisp 2.48</td>
+<td>(Lisp stack overflow. RESET)</td>
+<td>27.002</td>
+</tr>
+<tr>
+<td>CMUCL 20B (32bit)</td>
+<td>0.57</td>
+<td>0.42</td>
+</tr>
+<tr>
+<td>ECL 11.1.1</td>
+<td>(Segmentation fault)</td>
+<td>16.218</td>
+</tr>
+</tbody>
+</table>
+
 
 <ul>
 <li>OS: Ubuntu natty 11.04 x86_64 (CPU: Core2 3.0GHz)</li>
