@@ -4,7 +4,7 @@
   <title><![CDATA[Jianshi Huang's Blog]]></title>
   <link href="http://huangjs.github.com/atom.xml" rel="self"/>
   <link href="http://huangjs.github.com/"/>
-  <updated>2012-08-21T12:55:19-07:00</updated>
+  <updated>2012-08-21T12:56:50-07:00</updated>
   <id>http://huangjs.github.com/</id>
   <author>
     <name><![CDATA[Jianshi Huang]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Implemeting tail-call optimized 'defun' and 'labels' in Common Lisp]]></title>
+    <title type="html"><![CDATA[Implemeting TCO 'defun' and 'labels' in Common Lisp]]></title>
     <link href="http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/"/>
     <updated>2011-06-20T14:49:00-07:00</updated>
     <id>http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp</id>
