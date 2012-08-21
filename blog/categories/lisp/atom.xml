@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lisp | Jianshi Huang's Blog]]></title>
   <link href="http://huangjs.github.com/blog/categories/lisp/atom.xml" rel="self"/>
   <link href="http://huangjs.github.com/"/>
-  <updated>2012-08-21T12:54:07-07:00</updated>
+  <updated>2012-08-21T12:55:19-07:00</updated>
   <id>http://huangjs.github.com/</id>
   <author>
     <name><![CDATA[Jianshi Huang]]></name>
@@ -18,7 +18,7 @@
     <link href="http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/"/>
     <updated>2011-06-20T14:49:00-07:00</updated>
     <id>http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp</id>
-    <content type="html"><![CDATA[<p>(This is an very old blog, I don't blog much, maybe only when I'm drunk, which is rare...)</p>
+    <content type="html"><![CDATA[<p>(This is an old blog, I didn't blog much, maybe only when I'm drunk, which is rare...Now I need to do more, so hope this a good begining :)</p>
 
 <p>Two weeks ago, a post from the Lisp-cn mailing list asked whether
 Emacs's elisp implementation supports tail-call optimization. Though
