@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>黄澗石 Jianshi Huang</title>
+  <title>Implemeting TCO 'defun' and 'labels' in Common Lisp - 黄澗石 Jianshi Huang</title>
   <meta name="author" content="Jianshi Huang">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://huangjs.github.com/">
+  <link rel="canonical" href="http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -74,15 +74,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/">Implemeting TCO &#8216;Defun&#8217; and &#8216;Labels&#8217; in Common Lisp</a></h1>
+      <h1 class="entry-title">Implemeting TCO 'Defun' and 'Labels' in Common Lisp</h1>
     
     
       <p class="meta">
@@ -100,14 +97,14 @@
 
 <time datetime="2011-06-20T14:49:00-07:00" pubdate data-updated="true">Jun 20<span>th</span>, 2011</time>
         
-         | <a href="/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>(This is an old blog, I didn&#8217;t blog much, maybe only when I&#8217;m drunk, which is rare&#8230;Now I need to do more, so hope this a good begining :)</p>
+<div class="entry-content"><p>(This is an old blog, I didn&#8217;t blog much, maybe only when I&#8217;m drunk, which is rare&#8230;Now I need to do more, so hope this a good begining :)</p>
 
 <p>Two weeks ago, a post from the Lisp-cn mailing list asked whether
 Emacs&#8217;s elisp implementation supports tail-call optimization. Though
@@ -598,18 +595,67 @@ as ABCL or ECL.</p>
 
 <p>TODO: Here&#8217;s the file for download.</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Jianshi Huang</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2011-06-20T14:49:00-07:00" pubdate data-updated="true">Jun 20<span>th</span>, 2011</time>
+      
+
+<span class="categories">
   
-  <div class="pagination">
+    <a class='category' href='/blog/categories/lisp/'>lisp</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
     
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/" data-via="jshuang" data-counturl="http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -617,7 +663,7 @@ as ABCL or ECL.</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/">Implemeting TCO &#8216;defun&#8217; and &#8216;labels&#8217; in Common Lisp</a>
+        <a href="/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/">Implemeting TCO 'defun' and 'labels' in Common Lisp</a>
       </li>
     
   </ul>
@@ -626,7 +672,7 @@ as ABCL or ECL.</p>
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/huangjs">@huangjs</a> on GitHub
@@ -656,7 +702,7 @@ as ABCL or ECL.</p>
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -685,6 +731,7 @@ as ABCL or ECL.</p>
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -699,7 +746,10 @@ as ABCL or ECL.</p>
       var disqus_shortname = 'jianshi-blog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/';
+        var disqus_url = 'http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
