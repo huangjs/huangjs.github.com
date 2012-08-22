@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: lisp | 黄澗石的博客 Jianshi Huang]]></title>
+  <title><![CDATA[Category: lisp | 黄澗石 Jianshi Huang]]></title>
   <link href="http://huangjs.github.com/blog/categories/lisp/atom.xml" rel="self"/>
   <link href="http://huangjs.github.com/"/>
-  <updated>2012-08-21T19:42:21-07:00</updated>
+  <updated>2012-08-21T19:46:22-07:00</updated>
   <id>http://huangjs.github.com/</id>
   <author>
     <name><![CDATA[Jianshi Huang]]></name>
