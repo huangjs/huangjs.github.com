@@ -4,7 +4,7 @@
         <loc>
             http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/
         </loc>
-        <lastmod>2012-08-27T04:48:12-07:00</lastmod>
+        <lastmod>2012-08-27T04:49:32-07:00</lastmod>
     </url>
     <url>
         <loc>http://huangjs.github.com/archives/</loc>
@@ -12,11 +12,15 @@
     </url>
     <url>
         <loc>http://huangjs.github.com/</loc>
-        <lastmod>2012-08-27T04:48:12-07:00</lastmod>
+        <lastmod>2012-08-27T04:49:32-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://huangjs.github.com/feed/index.xml</loc>
+        <lastmod>2012-08-27T04:49:32-07:00</lastmod>
     </url>
     <url>
         <loc>http://huangjs.github.com/blog/archives/</loc>
-        <lastmod>2012-08-27T04:48:12-07:00</lastmod>
+        <lastmod>2012-08-27T04:49:32-07:00</lastmod>
     </url>
     <url>
         <loc>http://huangjs.github.com/links.html</loc>
