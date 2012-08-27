@@ -4,7 +4,7 @@
   <title><![CDATA[黄澗石 Jianshi Huang]]></title>
   <link href="http://huangjs.github.com/atom.xml" rel="self"/>
   <link href="http://huangjs.github.com/"/>
-  <updated>2012-08-27T04:55:31-07:00</updated>
+  <updated>2012-08-27T04:56:32-07:00</updated>
   <id>http://huangjs.github.com/</id>
   <author>
     <name><![CDATA[Jianshi Huang]]></name>
@@ -42,60 +42,33 @@ as ABCL or ECL.</p>
 
 <p>This is a very simple one. Tail-calls are in fact gotos, but in a structured way. The point is to shadow the function definition with a local macro (nlet-tc as follows) that expands to goto.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">(defmacro nlet-tc (name bindings &amp;body body)
-</span><span class="line">  (alexandria:with-unique-names (entry return)
-</span><span class="line">    (let* ((bindings (mapcar #'alexandria:ensure-list bindings))
-</span><span class="line">           (vars (mapcar #'first bindings)))
-</span><span class="line">      `(macrolet ((,name (&amp;rest args)
-</span><span class="line">                    `(progn
-</span><span class="line">                       (psetf ,@(mapcan #'list ',vars args))
-</span><span class="line">                       (go ,',entry))))
-</span><span class="line">         (let ,bindings
-</span><span class="line">           (block ,return
-</span><span class="line">             (tagbody
-</span><span class="line">                ,entry
-</span><span class="line">                (return-from ,return
-</span><span class="line">                  (locally ,@body)))))))))
-</span><span class="line">
-</span><span class="line">(defmacro defun-tc (name args &amp;body body)
-</span><span class="line">  `(defun ,name ,args
-</span><span class="line">     (nlet-tc ,name ,(mapcar (lambda (a) `(,a ,a)) args)
-</span><span class="line">       ,@body)))
-</span><span class="line">To make it more explicit, here's an example.
-</span><span class="line">
-</span><span class="line">(defun-tc sum (n acc)
-</span><span class="line">  (declare (fixnum n acc)
-</span><span class="line">           (optimize speed (safety 0)))
-</span><span class="line">  (if (&lt; = n 0)
-</span><span class="line">      acc
-</span><span class="line">      (sum (- n 1) (+ acc n))))</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>(defmacro nlet-tc (name bindings &amp;body body)
+  (alexandria:with-unique-names (entry return)
+    (let* ((bindings (mapcar #’alexandria:ensure-list bindings))
+           (vars (mapcar #’first bindings)))
+      <code>(macrolet ((,name (&amp;rest args)
+                    </code>(progn
+                       (psetf ,@(mapcan #’list ‘,vars args))
+                       (go ,’,entry))))
+         (let ,bindings
+           (block ,return
+             (tagbody
+                ,entry
+                (return-from ,return
+                  (locally ,@body)))))))))</p>
+
+<p>(defmacro defun-tc (name args &amp;body body)
+  <code>(defun ,name ,args
+     (nlet-tc ,name ,(mapcar (lambda (a) </code>(,a ,a)) args)
+       ,@body)))
+To make it more explicit, here’s an example.</p>
+
+<p>(defun-tc sum (n acc)
+  (declare (fixnum n acc)
+           (optimize speed (safety 0)))
+  (if (&lt; = n 0)
+      acc
+      (sum (- n 1) (+ acc n))))</p>
 
 <p>when expanded, will be:</p>
 
