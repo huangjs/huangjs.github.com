@@ -4,7 +4,7 @@
   <title><![CDATA[Category: programming | 黄澗石 Jianshi Huang]]></title>
   <link href="http://huangjs.github.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://huangjs.github.com/"/>
-  <updated>2012-08-21T19:46:22-07:00</updated>
+  <updated>2012-08-27T04:33:59-07:00</updated>
   <id>http://huangjs.github.com/</id>
   <author>
     <name><![CDATA[Jianshi Huang]]></name>
@@ -18,301 +18,264 @@
     <link href="http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/"/>
     <updated>2011-06-20T14:49:00-07:00</updated>
     <id>http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp</id>
-    <content type="html"><![CDATA[<p>(This is an old blog, I didn't blog much, maybe only when I'm drunk, which is rare...Now I need to do more, so hope this a good begining :)</p>
+    <content type="html"><![CDATA[<p>(This is an old blog, I didn’t blog much, maybe only when I’m drunk, which is rare…Now I need to do more, so hope this a good begining :)</p>
 
 <p>Two weeks ago, a post from the Lisp-cn mailing list asked whether
-Emacs's elisp implementation supports tail-call optimization. Though
-the answer turned out to be "nope", I broke into the conversation and
+Emacs’s elisp implementation supports tail-call optimization. Though
+the answer turned out to be “nope”, I broke into the conversation and
 said he could implement his own version of abstraction easily in Lisp.</p>
 
 <p>Then I followed up a new post of a small quiz for implementing
-tail-call optimized (but crippled) "defun" (or "define" for Schemes).
-Maybe because it's not a very interesting quiz, only one person showed
+tail-call optimized (but crippled) “defun” (or “define” for Schemes).
+Maybe because it’s not a very interesting quiz, only one person showed
 up with his solution, and eventually it became my own amusement.
 However, the result that shows the optimization done by several Common
 Lisp implementations is not boring at least. And it can be of help
-when using implementations that doesn't do tail-call optimization such
+when using implementations that doesn’t do tail-call optimization such
 as ABCL or ECL.</p>
 
-<h3>Task 1 Self-recursion Optimization</h3>
+<h3 id="task-1-self-recursion-optimization">Task 1 Self-recursion Optimization</h3>
 
-<blockquote><p>Write a macro called "defun-tc" that does similar things (define a toplevel function) as "defun" but also does forced tail-call optimization when calling itself recursively.</p></blockquote>
+<blockquote>
+  <p>Write a macro called “defun-tc” that does similar things (define a toplevel function) as “defun” but also does forced tail-call optimization when calling itself recursively.</p>
+</blockquote>
 
 <p>This is a very simple one. Tail-calls are in fact gotos, but in a structured way. The point is to shadow the function definition with a local macro (nlet-tc as follows) that expands to goto.</p>
 
 <p>``` common-lisp
 (defmacro nlet-tc (name bindings &amp;body body)
-  (alexandria:with-unique-names (entry return)</p>
-
-<pre><code>(let* ((bindings (mapcar #'alexandria:ensure-list bindings))
-       (vars (mapcar #'first bindings)))
-  `(macrolet ((,name (&amp;rest args)
-                `(progn
-                   (psetf ,@(mapcan #'list ',vars args))
-                   (go ,',entry))))
-     (let ,bindings
-       (block ,return
-         (tagbody
-            ,entry
-            (return-from ,return
-              (locally ,@body)))))))))
-</code></pre>
+  (alexandria:with-unique-names (entry return)
+    (let* ((bindings (mapcar #’alexandria:ensure-list bindings))
+           (vars (mapcar #’first bindings)))
+      <code>(macrolet ((,name (&amp;rest args)
+                    </code>(progn
+                       (psetf ,@(mapcan #’list ‘,vars args))
+                       (go ,’,entry))))
+         (let ,bindings
+           (block ,return
+             (tagbody
+                ,entry
+                (return-from ,return
+                  (locally ,@body)))))))))</p>
 
 <p>(defmacro defun-tc (name args &amp;body body)
-  `(defun ,name ,args</p>
-
-<pre><code> (nlet-tc ,name ,(mapcar (lambda (a) `(,a ,a)) args)
-   ,@body)))
-</code></pre>
-
-<p>To make it more explicit, here's an example.</p>
+  <code>(defun ,name ,args
+     (nlet-tc ,name ,(mapcar (lambda (a) </code>(,a ,a)) args)
+       ,@body)))
+To make it more explicit, here’s an example.</p>
 
 <p>(defun-tc sum (n acc)
-  (declare (fixnum n acc)</p>
-
-<pre><code>       (optimize speed (safety 0)))
-</code></pre>
-
-<p>  (if (&lt; = n 0)</p>
-
-<pre><code>  acc
-  (sum (- n 1) (+ acc n))))
-</code></pre>
-
-<p>```</p>
+  (declare (fixnum n acc)
+           (optimize speed (safety 0)))
+  (if (&lt; = n 0)
+      acc
+      (sum (- n 1) (+ acc n))))
+```</p>
 
 <p>when expanded, will be:</p>
 
-<p>```common-lisp
+<p><code>common-lisp
 (DEFUN SUM (N ACC)
-  (MACROLET ((SUM (&amp;REST ARGS)</p>
-
-<pre><code>           `(PROGN
-             (PSETF ,@(MAPCAN #'LIST '(N ACC) ARGS))
-             (GO #:ENTRY967))))
-(LET ((N N) (ACC ACC))
-  (BLOCK #:RETURN968
-    (TAGBODY
-     #:ENTRY967
-      (RETURN-FROM #:RETURN968
-        (LOCALLY
-         (DECLARE (FIXNUM N ACC)
-                  (OPTIMIZE SPEED (SAFETY 0)))
-         (IF (&lt; = N 0)
-             ACC
-             (SUM (- N 1) (+ ACC N))))))))))
-</code></pre>
-
-<p>```</p>
+  (MACROLET ((SUM (&amp;REST ARGS)
+               `(PROGN
+                 (PSETF ,@(MAPCAN #'LIST '(N ACC) ARGS))
+                 (GO #:ENTRY967))))
+    (LET ((N N) (ACC ACC))
+      (BLOCK #:RETURN968
+        (TAGBODY
+         #:ENTRY967
+          (RETURN-FROM #:RETURN968
+            (LOCALLY
+             (DECLARE (FIXNUM N ACC)
+                      (OPTIMIZE SPEED (SAFETY 0)))
+             (IF (&lt; = N 0)
+                 ACC
+                 (SUM (- N 1) (+ ACC N))))))))))
+</code></p>
 
 <p>The following benchmark</p>
 
-<p>```common-lisp
+<p><code>common-lisp
 (defun-tc test (n acc)
-  (declare (fixnum n acc)</p>
+  (declare (fixnum n acc)
+           (optimize speed (safety 0)))
+  (if (&lt; = n 0)
+       acc
+       (test (1- n) (1+ acc))))
+(time (test (expt 2 32)))
+=&gt; 4294967296
+</code></p>
 
-<pre><code>       (optimize speed (safety 0)))
-</code></pre>
+<p>showed there’s a little bit more overhead than SBCL’s native implementation. After examination the assembly code, it turned out that in my version SBCL wil treat (1- n) and (1+ acc) as machine integer rather than fixnum as declared, and the 4 redundant shifts are the only overhead. After adding (the fixnum …) to both form, the difference disappeared.</p>
 
-<p>  (if (&lt; = n 0)</p>
-
-<pre><code>   acc
-   (test (1- n) (1+ acc))))
-</code></pre>
-
-<p>(time (test (expt 2 32)))
-=> 4294967296
-```</p>
-
-<p>showed there's a little bit more overhead than SBCL's native implementation. After examination the assembly code, it turned out that in my version SBCL wil treat (1- n) and (1+ acc) as machine integer rather than fixnum as declared, and the 4 redundant shifts are the only overhead. After adding (the fixnum ...) to both form, the difference disappeared.</p>
-
-<p>A natural improvement is to automatically add the type declaration in the "psetf" form, the following trick does that, though it turned out to be less useful in the next task.</p>
+<p>A natural improvement is to automatically add the type declaration in the “psetf” form, the following trick does that, though it turned out to be less useful in the next task.</p>
 
 <p>```common-lisp
 (defun variable-type (var &amp;optional env)
   nil
-  #+sbcl (cdr (assoc 'cl:type (nth-value 2 (sb-cltl2:variable-information var env)))))</p>
+  #+sbcl (cdr (assoc ‘cl:type (nth-value 2 (sb-cltl2:variable-information var env)))))</p>
 
 <p>(defmacro my-psetf (&amp;environment env &amp;rest args)
-  (assert (and (> (length args) 0)</p>
+  (assert (and (&gt; (length args) 0)
+               (evenp (length args))))
+  (multiple-value-bind (places vals newvars)
+      (loop with e = args
+            while e
+            collect (pop e) into places
+            collect (pop e) into vals
+            collect (gensym “NEW”) into newvars
+            finally (return (values places vals newvars)))
+    <code>(let* ,(mapcar (lambda (p v n)
+                     (if (and (symbolp p)
+                              (variable-type p env))
+                         </code>(,n (the ,(variable-type p env) ,v))
+                         <code>(,n ,v)))
+                   places vals newvars)
+       (setf ,@(mapcan #'list places newvars)))))
+</code>``</p>
 
-<pre><code>           (evenp (length args))))
-</code></pre>
+<p>Change “psetf” to “my-psetf” and the type information will be propagated in compile-time.</p>
 
-<p>  (multiple-value-bind (places vals newvars)</p>
+<h3 id="task-2-mutual-recursion-optimization">Task 2 Mutual-recursion Optimization</h3>
 
-<pre><code>  (loop with e = args
-        while e
-        collect (pop e) into places
-        collect (pop e) into vals
-        collect (gensym "NEW") into newvars
-        finally (return (values places vals newvars)))
-`(let* ,(mapcar (lambda (p v n)
-                 (if (and (symbolp p)
-                          (variable-type p env))
-                     `(,n (the ,(variable-type p env) ,v))
-                     `(,n ,v)))
-               places vals newvars)
-   (setf ,@(mapcan #'list places newvars)))))
-</code></pre>
-
-<p>```</p>
-
-<p>Change "psetf" to "my-psetf" and the type information will be propagated in compile-time.</p>
-
-<h3>Task 2 Mutual-recursion Optimization</h3>
-
-<blockquote><p>Write a macro called "labels-tc" that does similar things as "label" but also does forced tail-call optimization when recursively calling functions defined in the same scope.</p></blockquote>
+<blockquote>
+  <p>Write a macro called “labels-tc” that does similar things as “label” but also does forced tail-call optimization when recursively calling functions defined in the same scope.</p>
+</blockquote>
 
 <p>This task is much more fun. You need to</p>
 
 <ul>
-<li>Establish tagbody scope that covers all local functions</li>
-<li>Still allow local functions being used in "funcall" and "apply"</li>
-<li>Handle all variables in one scope</li>
+  <li>Establish tagbody scope that covers all local functions</li>
+  <li>Still allow local functions being used in “funcall” and “apply”</li>
+  <li>Handle all variables in one scope</li>
 </ul>
 
+<p>My idea is to define an anonymous local function that includes all the definitions, and use a dispatch to jump to the right entry point. All other functions will call the anonymous one. As for variable handling, I currently don’t have a good solution without a full renaming. So it’s ignored and I simply combined all the variables (maybe an error checking is necessary).</p>
 
-<p>My idea is to define an anonymous local function that includes all the definitions, and use a dispatch to jump to the right entry point. All other functions will call the anonymous one. As for variable handling, I currently don't have a good solution without a full renaming. So it's ignored and I simply combined all the variables (maybe an error checking is necessary).</p>
+<p>Here’s the code:</p>
 
-<p>Here's the code:</p>
-
-<p>```common-lisp
+<p><code>common-lisp
 (defmacro labels-tc (definitions &amp;body body)
-  (multiple-value-bind (names argss bodies jump-tags)</p>
-
-<pre><code>  (loop for d in definitions
-        for n = (first d)
-        for a = (second d)
-        for b = (rest (rest d))
-        for j = (gensym (symbol-name n))
-        collect n into ns
-        collect a into as
-        collect b into bs
-        collect j into js
-        finally (return (values ns as bs js)))
-(alexandria:with-unique-names (entry exit name dispatch)
-  `(labels ((,entry (,name &amp;key ,@(remove-duplicates (apply #'append argss)))
-              (macrolet (,@(mapcar (lambda (name args jump-tag)
-                                     `(,name (&amp;rest arrrgs)
-                                             `(progn
-                                                (my-psetf ,@(mapcan #'list ',args arrrgs))
-                                                (go ,',jump-tag))))
-                             names argss jump-tags))
-                (block ,exit
-                  (tagbody
-                     ,dispatch
-                     (case ,name
-                       ,@(mapcar (lambda (name jump-tag)
-                                   `(,name (go ,jump-tag)))
-                          names jump-tags))
-                     ,@(mapcan (lambda (jump-tag body)
-                                 `(,jump-tag
-                                   (return-from ,exit
-                                     (locally ,@body))))
-                               jump-tags bodies)))))
-            ,@(mapcar (lambda (name args)
-                        `(,name ,args
-                                (,entry
-                                 ',name
-                                 ,@(mapcan (lambda (a)
-                                             `(,(alexandria:make-keyword a) ,a))
-                                           args))))
-                names argss))
-     (locally ,@body)))))
-</code></pre>
-
-<p>```</p>
+  (multiple-value-bind (names argss bodies jump-tags)
+      (loop for d in definitions
+            for n = (first d)
+            for a = (second d)
+            for b = (rest (rest d))
+            for j = (gensym (symbol-name n))
+            collect n into ns
+            collect a into as
+            collect b into bs
+            collect j into js
+            finally (return (values ns as bs js)))
+    (alexandria:with-unique-names (entry exit name dispatch)
+      `(labels ((,entry (,name &amp;key ,@(remove-duplicates (apply #'append argss)))
+                  (macrolet (,@(mapcar (lambda (name args jump-tag)
+                                         `(,name (&amp;rest arrrgs)
+                                                 `(progn
+                                                    (my-psetf ,@(mapcan #'list ',args arrrgs))
+                                                    (go ,',jump-tag))))
+                                 names argss jump-tags))
+                    (block ,exit
+                      (tagbody
+                         ,dispatch
+                         (case ,name
+                           ,@(mapcar (lambda (name jump-tag)
+                                       `(,name (go ,jump-tag)))
+                              names jump-tags))
+                         ,@(mapcan (lambda (jump-tag body)
+                                     `(,jump-tag
+                                       (return-from ,exit
+                                         (locally ,@body))))
+                                   jump-tags bodies)))))
+                ,@(mapcar (lambda (name args)
+                            `(,name ,args
+                                    (,entry
+                                     ',name
+                                     ,@(mapcan (lambda (a)
+                                                 `(,(alexandria:make-keyword a) ,a))
+                                               args))))
+                    names argss))
+         (locally ,@body)))))
+</code></p>
 
 <p>So again, example:</p>
 
-<p>```common-lisp
-(labels-tc ((oddp (n)</p>
-
-<pre><code>       (declare (fixnum n))
-       (if (= n 0)
-           nil
-           (evenp (1- n))))
-     (evenp (m)
-       (declare (fixnum m))
-       (if (= m 0)
-           t
-           (oddp (1- m)))))
-</code></pre>
-
-<p>  (print (oddp 21)))
-```</p>
+<p><code>common-lisp
+(labels-tc ((oddp (n)
+           (declare (fixnum n))
+           (if (= n 0)
+               nil
+               (evenp (1- n))))
+         (evenp (m)
+           (declare (fixnum m))
+           (if (= m 0)
+               t
+               (oddp (1- m)))))
+  (print (oddp 21)))
+</code></p>
 
 <p>will be expanded to:</p>
 
-<p>```common-lisp
-(labels ((#:entry (#:name &amp;key n m)</p>
+<p><code>common-lisp
+(labels ((#:entry (#:name &amp;key n m)
+           (block #:exit
+             (tagbody
+                #:dispatch
+                (case #:name
+                  (oddp (go #:oddp))
+                  (evenp (go #:evenp)))
+                #:oddp
+                (return-from #:exit
+                  (locally
+                      (declare (fixnum n))
+                    (if (= n 0)
+                        nil
+                        (progn
+                          (psetf m (1- n))
+                          (go #:evenp)))))
+                #:evenp
+                (return-from #:exit
+                  (locally
+                      (declare (fixnum m))
+                    (if (= m 0)
+                        t
+                        (progn
+                          (psetf n (1- m))
+                          (go #:oddp))))))))
+         (oddp (n)
+           (#:entry 'oddp :n n))
+         (evenp (m)
+           (#:entry 'evenp :m m)))
+  (print (oddp 21)))
+</code></p>
 
-<pre><code>       (block #:exit
-         (tagbody
-            #:dispatch
-            (case #:name
-              (oddp (go #:oddp))
-              (evenp (go #:evenp)))
-            #:oddp
-            (return-from #:exit
-              (locally
-                  (declare (fixnum n))
-                (if (= n 0)
-                    nil
-                    (progn
-                      (psetf m (1- n))
-                      (go #:evenp)))))
-            #:evenp
-            (return-from #:exit
-              (locally
-                  (declare (fixnum m))
-                (if (= m 0)
-                    t
-                    (progn
-                      (psetf n (1- m))
-                      (go #:oddp))))))))
-     (oddp (n)
-       (#:entry 'oddp :n n))
-     (evenp (m)
-       (#:entry 'evenp :m m)))
-</code></pre>
+<p>Note again that this version doesn’t handle variables properly except the simplest form. And as mentioned above, my-psetf has no effect here since type declarations are not visible in the scope of labels-tc.</p>
 
-<p>  (print (oddp 21)))
-```</p>
+<h3 id="benchmark-and-verification">Benchmark and Verification</h3>
 
-<p>Note again that this version doesn't handle variables properly except the simplest form. And as mentioned above, my-psetf has no effect here since type declarations are not visible in the scope of labels-tc.</p>
-
-<h3>Benchmark and Verification</h3>
-
-<p>Ok, here's the fun part, benchmark and verifying the implementation in different implementations. Here's the benchmark code:</p>
+<p>Ok, here’s the fun part, benchmark and verifying the implementation in different implementations. Here’s the benchmark code:</p>
 
 <p>```common-lisp
 (defun test (n)
-  (declare (fixnum n)</p>
-
-<pre><code>       (optimize speed (safety 0)))
-</code></pre>
-
-<p>  (labels-tc ((my-oddp (n)</p>
-
-<pre><code>                   (declare (fixnum n))
-                   (if (= n 0)
-                       nil
-                       (my-evenp (the fixnum (1- n)))))
-          (my-evenp (m)
-                    (declare (fixnum m))
-                    (if (= m 0)
-                        t
-                        (my-oddp (the fixnum (1- m))))))
-(my-evenp n)))
-</code></pre>
+  (declare (fixnum n)
+           (optimize speed (safety 0)))
+  (labels-tc ((my-oddp (n)
+                       (declare (fixnum n))
+                       (if (= n 0)
+                           nil
+                           (my-evenp (the fixnum (1- n)))))
+              (my-evenp (m)
+                        (declare (fixnum m))
+                        (if (= m 0)
+                            t
+                            (my-oddp (the fixnum (1- m))))))
+    (my-evenp n)))</p>
 
 <p>(time (test (expt 2 30)))
-=> T
+=&gt; T
 ```</p>
 
-<p>And here's the result:</p>
+<p>And here’s the result:</p>
 
 <table border="2" rules="groups" cellspacing="0" cellpadding="6"><colgroup> <col align="left" /> <col align="right" /> <col align="right" /> </colgroup>
 <thead>
@@ -366,17 +329,16 @@ as ABCL or ECL.</p>
 </tbody>
 </table>
 
-
 <ul>
-<li>OS: Ubuntu natty 11.04 x86_64 (CPU: Core2 3.0GHz)</li>
-<li>AllegroCL needs compiler flag to turn on the optimization on.</li>
-<li>Since CMUCL is 32bit, to avoid fixnum overflow, I changed the benchmark to (test (expt 2 28)) and looped 4 times.</li>
+  <li>OS: Ubuntu natty 11.04 x86_64 (CPU: Core2 3.0GHz)</li>
+  <li>AllegroCL needs compiler flag to turn on the optimization on.</li>
+  <li>Since CMUCL is 32bit, to avoid fixnum overflow, I changed the benchmark to (test (expt 2 28)) and looped 4 times.</li>
 </ul>
 
+<p>What amazed me is that my implementation is among the best with SBCL/CMUCL’s, so if your algorithm depends heavily on mutual tail-recursion, you can use this customized labels-tc without changing a single line of your code (but be aware of the variable handling!). And I think the reason other implementations don’t optimize enough is because many tail-recursion programs can be intuitively translated into ones using loop, however, in some situations, it is not case.</p>
 
-<p>What amazed me is that my implementation is among the best with SBCL/CMUCL's, so if your algorithm depends heavily on mutual tail-recursion, you can use this customized labels-tc without changing a single line of your code (but be aware of the variable handling!). And I think the reason other implementations don't optimize enough is because many tail-recursion programs can be intuitively translated into ones using loop, however, in some situations, it is not case.</p>
+<p>TODO: Here’s the file for download.</p>
 
-<p>TODO: Here's the file for download.</p>
 ]]></content>
   </entry>
   
