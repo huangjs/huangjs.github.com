@@ -4,7 +4,7 @@
   <title><![CDATA[黄澗石 Jianshi Huang]]></title>
   <link href="http://huangjs.github.com/feed" rel="self"/>
   <link href="http://huangjs.github.com/"/>
-  <updated>2012-08-27T04:52:07-07:00</updated>
+  <updated>2012-08-27T04:55:31-07:00</updated>
   <id>http://huangjs.github.com/</id>
   <author>
     <name><![CDATA[Jianshi Huang]]></name>
@@ -42,7 +42,7 @@ as ABCL or ECL.</p>
 
 <p>This is a very simple one. Tail-calls are in fact gotos, but in a structured way. The point is to shadow the function definition with a local macro (nlet-tc as follows) that expands to goto.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -69,34 +69,33 @@ as ABCL or ECL.</p>
 <span class="line-number">25</span>
 <span class="line-number">26</span>
 <span class="line-number">27</span>
-</pre></td><td class="code"><pre><code class="common-lisp"><span class="line"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">nlet-tc</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">bindings</span> <span class="k">&amp;body</span> <span class="nv">body</span><span class="p">)</span>
-</span><span class="line">  <span class="p">(</span><span class="nv">alexandria:with-unique-names</span> <span class="p">(</span><span class="nv">entry</span> <span class="nb">return</span><span class="p">)</span>
-</span><span class="line">    <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">bindings</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#&#39;</span><span class="nv">alexandria:ensure-list</span> <span class="nv">bindings</span><span class="p">))</span>
-</span><span class="line">           <span class="p">(</span><span class="nv">vars</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#&#39;</span><span class="nb">first</span> <span class="nv">bindings</span><span class="p">)))</span>
-</span><span class="line">      <span class="o">`</span><span class="p">(</span><span class="k">macrolet</span> <span class="p">((</span><span class="o">,</span><span class="nv">name</span> <span class="p">(</span><span class="k">&amp;rest</span> <span class="nv">args</span><span class="p">)</span>
-</span><span class="line">                    <span class="o">`</span><span class="p">(</span><span class="k">progn</span>
-</span><span class="line">                       <span class="p">(</span><span class="nb">psetf</span> <span class="o">,@</span><span class="p">(</span><span class="nb">mapcan</span> <span class="nf">#&#39;</span><span class="nb">list</span> <span class="ss">&#39;,vars</span> <span class="nv">args</span><span class="p">))</span>
-</span><span class="line">                       <span class="p">(</span><span class="k">go</span> <span class="o">,</span><span class="ss">&#39;,entry</span><span class="p">))))</span>
-</span><span class="line">         <span class="p">(</span><span class="k">let</span> <span class="o">,</span><span class="nv">bindings</span>
-</span><span class="line">           <span class="p">(</span><span class="k">block</span> <span class="o">,</span><span class="nb">return</span>
-</span><span class="line">             <span class="p">(</span><span class="k">tagbody</span>
-</span><span class="line">                <span class="o">,</span><span class="nv">entry</span>
-</span><span class="line">                <span class="p">(</span><span class="k">return-from</span> <span class="o">,</span><span class="nb">return</span>
-</span><span class="line">                  <span class="p">(</span><span class="k">locally</span> <span class="o">,@</span><span class="nv">body</span><span class="p">)))))))))</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">(defmacro nlet-tc (name bindings &amp;body body)
+</span><span class="line">  (alexandria:with-unique-names (entry return)
+</span><span class="line">    (let* ((bindings (mapcar #'alexandria:ensure-list bindings))
+</span><span class="line">           (vars (mapcar #'first bindings)))
+</span><span class="line">      `(macrolet ((,name (&amp;rest args)
+</span><span class="line">                    `(progn
+</span><span class="line">                       (psetf ,@(mapcan #'list ',vars args))
+</span><span class="line">                       (go ,',entry))))
+</span><span class="line">         (let ,bindings
+</span><span class="line">           (block ,return
+</span><span class="line">             (tagbody
+</span><span class="line">                ,entry
+</span><span class="line">                (return-from ,return
+</span><span class="line">                  (locally ,@body)))))))))
 </span><span class="line">
-</span><span class="line"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">defun-tc</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">args</span> <span class="k">&amp;body</span> <span class="nv">body</span><span class="p">)</span>
-</span><span class="line">  <span class="o">`</span><span class="p">(</span><span class="nb">defun</span> <span class="o">,</span><span class="nv">name</span> <span class="o">,</span><span class="nv">args</span>
-</span><span class="line">     <span class="p">(</span><span class="nv">nlet-tc</span> <span class="o">,</span><span class="nv">name</span> <span class="o">,</span><span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">a</span><span class="p">)</span> <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">a</span> <span class="o">,</span><span class="nv">a</span><span class="p">))</span> <span class="nv">args</span><span class="p">)</span>
-</span><span class="line">       <span class="o">,@</span><span class="nv">body</span><span class="p">)))</span>
-</span><span class="line"><span class="nv">To</span> <span class="nv">make</span> <span class="nv">it</span> <span class="nv">more</span> <span class="nv">explicit,</span> <span class="nv">here</span><span class="ss">&#39;s</span> <span class="nv">an</span> <span class="nv">example.</span>
+</span><span class="line">(defmacro defun-tc (name args &amp;body body)
+</span><span class="line">  `(defun ,name ,args
+</span><span class="line">     (nlet-tc ,name ,(mapcar (lambda (a) `(,a ,a)) args)
+</span><span class="line">       ,@body)))
+</span><span class="line">To make it more explicit, here's an example.
 </span><span class="line">
-</span><span class="line"><span class="p">(</span><span class="nv">defun-tc</span> <span class="nv">sum</span> <span class="p">(</span><span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span>
-</span><span class="line">  <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="kt">fixnum</span> <span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span>
-</span><span class="line">           <span class="p">(</span><span class="k">optimize</span> <span class="nv">speed</span> <span class="p">(</span><span class="nv">safety</span> <span class="mi">0</span><span class="p">)))</span>
-</span><span class="line">  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">&lt;</span> <span class="nb">=</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class="line">      <span class="nv">acc</span>
-</span><span class="line">      <span class="p">(</span><span class="nv">sum</span> <span class="p">(</span><span class="nb">-</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">acc</span> <span class="nv">n</span><span class="p">))))</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line">(defun-tc sum (n acc)
+</span><span class="line">  (declare (fixnum n acc)
+</span><span class="line">           (optimize speed (safety 0)))
+</span><span class="line">  (if (&lt; = n 0)
+</span><span class="line">      acc
+</span><span class="line">      (sum (- n 1) (+ acc n))))</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>when expanded, will be:</p>
 
