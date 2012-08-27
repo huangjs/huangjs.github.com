@@ -4,7 +4,7 @@
   <title><![CDATA[Category: programming | 黄澗石 Jianshi Huang]]></title>
   <link href="http://huangjs.github.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://huangjs.github.com/"/>
-  <updated>2012-08-27T04:57:09-07:00</updated>
+  <updated>2012-08-27T04:58:07-07:00</updated>
   <id>http://huangjs.github.com/</id>
   <author>
     <name><![CDATA[Jianshi Huang]]></name>
@@ -42,7 +42,7 @@ as ABCL or ECL.</p>
 
 <p>This is a very simple one. Tail-calls are in fact gotos, but in a structured way. The point is to shadow the function definition with a local macro (nlet-tc as follows) that expands to goto.</p>
 
-<p>``` lisp
+<p>```lisp
 (defmacro nlet-tc (name bindings &amp;body body)
   (alexandria:with-unique-names (entry return)
     (let* ((bindings (mapcar #’alexandria:ensure-list bindings))
