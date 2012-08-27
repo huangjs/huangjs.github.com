@@ -1,715 +1,137 @@
-
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>黄澗石 Jianshi Huang</title>
+
+  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/b/378 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title> Jianshi Huang</title>
   <meta name="author" content="Jianshi Huang">
-
-  
-  <meta name="description" content="(This is an old blog, I didn’t blog much, maybe only when I’m drunk, which is rare…Now I need to do more, so hope this a good begining :) Two weeks &hellip;">
   
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
   
-  <link rel="canonical" href="http://huangjs.github.com">
-  <link href="/favicon.png" rel="icon">
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+  <!-- CSS: implied media=all -->
+  <!-- CSS concatenated and minified via ant build script-->
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="黄澗石 Jianshi Huang" type="application/atom+xml">
-  <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-34234684-1']);
-    _gaq.push(['_trackPageview']);
+  <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+  <!-- end CSS-->
 
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
+  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
-
+  <!-- All JavaScript at the bottom, except for Modernizr / Respond.
+       Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
+       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="/javascripts/libs/modernizr-2.0.6.min.js"></script>
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/"><img src="/images/logo-黄澗石 Jianshi Huang.png" alt="黄澗石 Jianshi Huang" /></a></h1>
-</hgroup>
+<body>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:huangjs.github.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/hakkimizda/">Hakkımızda</a></li>
-  <li><a href="/">Blog</a></li>
-  <li><a href="/sunumlar/">Sunumlar</a></li>
-  <li><a href="/blog/archives">Arşiv</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/">Implemeting TCO &#8216;Defun&#8217; and &#8216;Labels&#8217; in Common Lisp</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-20T14:49:00-07:00" pubdate data-updated="true">Jun 20<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>(This is an old blog, I didn’t blog much, maybe only when I’m drunk, which is rare…Now I need to do more, so hope this a good begining :)</p>
-
-<p>Two weeks ago, a post from the Lisp-cn mailing list asked whether
-Emacs’s elisp implementation supports tail-call optimization. Though
-the answer turned out to be “nope”, I broke into the conversation and
-said he could implement his own version of abstraction easily in Lisp.</p>
-
-<p>Then I followed up a new post of a small quiz for implementing
-tail-call optimized (but crippled) “defun” (or “define” for Schemes).
-Maybe because it’s not a very interesting quiz, only one person showed
-up with his solution, and eventually it became my own amusement.
-However, the result that shows the optimization done by several Common
-Lisp implementations is not boring at least. And it can be of help
-when using implementations that doesn’t do tail-call optimization such
-as ABCL or ECL.</p>
-
-<h3 id="task-1-self-recursion-optimization">Task 1 Self-recursion Optimization</h3>
-
-<blockquote>
-  <p>Write a macro called “defun-tc” that does similar things (define a toplevel function) as “defun” but also does forced tail-call optimization when calling itself recursively.</p>
-</blockquote>
-
-<p>This is a very simple one. Tail-calls are in fact gotos, but in a structured way. The point is to shadow the function definition with a local macro (nlet-tc as follows) that expands to goto.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-</pre></td><td class="code"><pre><code class="common-lisp"><span class="line"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">nlet-tc</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">bindings</span> <span class="k">&amp;body</span> <span class="nv">body</span><span class="p">)</span>
-</span><span class="line">  <span class="p">(</span><span class="nv">alexandria:with-unique-names</span> <span class="p">(</span><span class="nv">entry</span> <span class="nb">return</span><span class="p">)</span>
-</span><span class="line">    <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">bindings</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#&#39;</span><span class="nv">alexandria:ensure-list</span> <span class="nv">bindings</span><span class="p">))</span>
-</span><span class="line">           <span class="p">(</span><span class="nv">vars</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#&#39;</span><span class="nb">first</span> <span class="nv">bindings</span><span class="p">)))</span>
-</span><span class="line">      <span class="o">`</span><span class="p">(</span><span class="k">macrolet</span> <span class="p">((</span><span class="o">,</span><span class="nv">name</span> <span class="p">(</span><span class="k">&amp;rest</span> <span class="nv">args</span><span class="p">)</span>
-</span><span class="line">                    <span class="o">`</span><span class="p">(</span><span class="k">progn</span>
-</span><span class="line">                       <span class="p">(</span><span class="nb">psetf</span> <span class="o">,@</span><span class="p">(</span><span class="nb">mapcan</span> <span class="nf">#&#39;</span><span class="nb">list</span> <span class="ss">&#39;,vars</span> <span class="nv">args</span><span class="p">))</span>
-</span><span class="line">                       <span class="p">(</span><span class="k">go</span> <span class="o">,</span><span class="ss">&#39;,entry</span><span class="p">))))</span>
-</span><span class="line">         <span class="p">(</span><span class="k">let</span> <span class="o">,</span><span class="nv">bindings</span>
-</span><span class="line">           <span class="p">(</span><span class="k">block</span> <span class="o">,</span><span class="nb">return</span>
-</span><span class="line">             <span class="p">(</span><span class="k">tagbody</span>
-</span><span class="line">                <span class="o">,</span><span class="nv">entry</span>
-</span><span class="line">                <span class="p">(</span><span class="k">return-from</span> <span class="o">,</span><span class="nb">return</span>
-</span><span class="line">                  <span class="p">(</span><span class="k">locally</span> <span class="o">,@</span><span class="nv">body</span><span class="p">)))))))))</span>
-</span><span class="line">
-</span><span class="line"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">defun-tc</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">args</span> <span class="k">&amp;body</span> <span class="nv">body</span><span class="p">)</span>
-</span><span class="line">  <span class="o">`</span><span class="p">(</span><span class="nb">defun</span> <span class="o">,</span><span class="nv">name</span> <span class="o">,</span><span class="nv">args</span>
-</span><span class="line">     <span class="p">(</span><span class="nv">nlet-tc</span> <span class="o">,</span><span class="nv">name</span> <span class="o">,</span><span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">a</span><span class="p">)</span> <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">a</span> <span class="o">,</span><span class="nv">a</span><span class="p">))</span> <span class="nv">args</span><span class="p">)</span>
-</span><span class="line">       <span class="o">,@</span><span class="nv">body</span><span class="p">)))</span>
-</span><span class="line"><span class="nv">To</span> <span class="nv">make</span> <span class="nv">it</span> <span class="nv">more</span> <span class="nv">explicit,</span> <span class="nv">here</span><span class="ss">&#39;s</span> <span class="nv">an</span> <span class="nv">example.</span>
-</span><span class="line">
-</span><span class="line"><span class="p">(</span><span class="nv">defun-tc</span> <span class="nv">sum</span> <span class="p">(</span><span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span>
-</span><span class="line">  <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="kt">fixnum</span> <span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span>
-</span><span class="line">           <span class="p">(</span><span class="k">optimize</span> <span class="nv">speed</span> <span class="p">(</span><span class="nv">safety</span> <span class="mi">0</span><span class="p">)))</span>
-</span><span class="line">  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">&lt;</span> <span class="nb">=</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class="line">      <span class="nv">acc</span>
-</span><span class="line">      <span class="p">(</span><span class="nv">sum</span> <span class="p">(</span><span class="nb">-</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">acc</span> <span class="nv">n</span><span class="p">))))</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>when expanded, will be:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-</pre></td><td class="code"><pre><code class="common-lisp"><span class="line"><span class="p">(</span><span class="nv">DEFUN</span> <span class="nv">SUM</span> <span class="p">(</span><span class="nv">N</span> <span class="nv">ACC</span><span class="p">)</span>
-</span><span class="line">  <span class="p">(</span><span class="nv">MACROLET</span> <span class="p">((</span><span class="nv">SUM</span> <span class="p">(</span><span class="nv">&amp;REST</span> <span class="nv">ARGS</span><span class="p">)</span>
-</span><span class="line">               <span class="o">`</span><span class="p">(</span><span class="nv">PROGN</span>
-</span><span class="line">                 <span class="p">(</span><span class="nv">PSETF</span> <span class="o">,@</span><span class="p">(</span><span class="nv">MAPCAN</span> <span class="nf">#&#39;</span><span class="nv">LIST</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">N</span> <span class="nv">ACC</span><span class="p">)</span> <span class="nv">ARGS</span><span class="p">))</span>
-</span><span class="line">                 <span class="p">(</span><span class="nv">GO</span> <span class="ss">#:ENTRY967</span><span class="p">))))</span>
-</span><span class="line">    <span class="p">(</span><span class="nv">LET</span> <span class="p">((</span><span class="nv">N</span> <span class="nv">N</span><span class="p">)</span> <span class="p">(</span><span class="nv">ACC</span> <span class="nv">ACC</span><span class="p">))</span>
-</span><span class="line">      <span class="p">(</span><span class="nv">BLOCK</span> <span class="ss">#:RETURN968</span>
-</span><span class="line">        <span class="p">(</span><span class="nv">TAGBODY</span>
-</span><span class="line">         <span class="ss">#:ENTRY967</span>
-</span><span class="line">          <span class="p">(</span><span class="nv">RETURN-FROM</span> <span class="ss">#:RETURN968</span>
-</span><span class="line">            <span class="p">(</span><span class="nv">LOCALLY</span>
-</span><span class="line">             <span class="p">(</span><span class="nv">DECLARE</span> <span class="p">(</span><span class="nv">FIXNUM</span> <span class="nv">N</span> <span class="nv">ACC</span><span class="p">)</span>
-</span><span class="line">                      <span class="p">(</span><span class="nv">OPTIMIZE</span> <span class="nv">SPEED</span> <span class="p">(</span><span class="nv">SAFETY</span> <span class="mi">0</span><span class="p">)))</span>
-</span><span class="line">             <span class="p">(</span><span class="nv">IF</span> <span class="p">(</span><span class="nb">&lt;</span> <span class="nb">=</span> <span class="nv">N</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class="line">                 <span class="nv">ACC</span>
-</span><span class="line">                 <span class="p">(</span><span class="nv">SUM</span> <span class="p">(</span><span class="nb">-</span> <span class="nv">N</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">ACC</span> <span class="nv">N</span><span class="p">))))))))))</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The following benchmark</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="common-lisp"><span class="line"><span class="p">(</span><span class="nv">defun-tc</span> <span class="nv">test</span> <span class="p">(</span><span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span>
-</span><span class="line">  <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="kt">fixnum</span> <span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span>
-</span><span class="line">           <span class="p">(</span><span class="k">optimize</span> <span class="nv">speed</span> <span class="p">(</span><span class="nv">safety</span> <span class="mi">0</span><span class="p">)))</span>
-</span><span class="line">  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">&lt;</span> <span class="nb">=</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class="line">       <span class="nv">acc</span>
-</span><span class="line">       <span class="p">(</span><span class="nv">test</span> <span class="p">(</span><span class="nb">1-</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">1+</span> <span class="nv">acc</span><span class="p">))))</span>
-</span><span class="line"><span class="p">(</span><span class="nb">time</span> <span class="p">(</span><span class="nv">test</span> <span class="p">(</span><span class="nb">expt</span> <span class="mi">2</span> <span class="mi">32</span><span class="p">)))</span>
-</span><span class="line"><span class="nv">=&gt;</span> <span class="mi">4294967296</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>showed there’s a little bit more overhead than SBCL’s native implementation. After examination the assembly code, it turned out that in my version SBCL wil treat (1- n) and (1+ acc) as machine integer rather than fixnum as declared, and the 4 redundant shifts are the only overhead. After adding (the fixnum …) to both form, the difference disappeared.</p>
-
-<p>A natural improvement is to automatically add the type declaration in the “psetf” form, the following trick does that, though it turned out to be less useful in the next task.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-</pre></td><td class="code"><pre><code class="common-lisp"><span class="line"><span class="p">(</span><span class="nb">defun</span> <span class="nv">variable-type</span> <span class="p">(</span><span class="nv">var</span> <span class="k">&amp;optional</span> <span class="nv">env</span><span class="p">)</span>
-</span><span class="line">  <span class="no">nil</span>
-</span><span class="line">  <span class="o">#+</span><span class="nv">sbcl</span> <span class="p">(</span><span class="nb">cdr</span> <span class="p">(</span><span class="nb">assoc</span> <span class="ss">&#39;cl:type</span> <span class="p">(</span><span class="nb">nth-value</span> <span class="mi">2</span> <span class="p">(</span><span class="nv">sb-cltl2:variable-information</span> <span class="nv">var</span> <span class="nv">env</span><span class="p">)))))</span>
-</span><span class="line">
-</span><span class="line"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">my-psetf</span> <span class="p">(</span><span class="k">&amp;environment</span> <span class="nv">env</span> <span class="k">&amp;rest</span> <span class="nv">args</span><span class="p">)</span>
-</span><span class="line">  <span class="p">(</span><span class="nb">assert</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">args</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class="line">               <span class="p">(</span><span class="nb">evenp</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">args</span><span class="p">))))</span>
-</span><span class="line">  <span class="p">(</span><span class="nb">multiple-value-bind</span> <span class="p">(</span><span class="nv">places</span> <span class="nv">vals</span> <span class="nv">newvars</span><span class="p">)</span>
-</span><span class="line">      <span class="p">(</span><span class="nb">loop</span> <span class="nv">with</span> <span class="nv">e</span> <span class="nb">=</span> <span class="nv">args</span>
-</span><span class="line">            <span class="nv">while</span> <span class="nv">e</span>
-</span><span class="line">            <span class="nv">collect</span> <span class="p">(</span><span class="nb">pop</span> <span class="nv">e</span><span class="p">)</span> <span class="nv">into</span> <span class="nv">places</span>
-</span><span class="line">            <span class="nv">collect</span> <span class="p">(</span><span class="nb">pop</span> <span class="nv">e</span><span class="p">)</span> <span class="nv">into</span> <span class="nv">vals</span>
-</span><span class="line">            <span class="nv">collect</span> <span class="p">(</span><span class="nb">gensym</span> <span class="s">&quot;NEW&quot;</span><span class="p">)</span> <span class="nv">into</span> <span class="nv">newvars</span>
-</span><span class="line">            <span class="nv">finally</span> <span class="p">(</span><span class="nb">return</span> <span class="p">(</span><span class="nb">values</span> <span class="nv">places</span> <span class="nv">vals</span> <span class="nv">newvars</span><span class="p">)))</span>
-</span><span class="line">    <span class="o">`</span><span class="p">(</span><span class="k">let*</span> <span class="o">,</span><span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">p</span> <span class="nv">v</span> <span class="nv">n</span><span class="p">)</span>
-</span><span class="line">                     <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nb">symbolp</span> <span class="nv">p</span><span class="p">)</span>
-</span><span class="line">                              <span class="p">(</span><span class="nv">variable-type</span> <span class="nv">p</span> <span class="nv">env</span><span class="p">))</span>
-</span><span class="line">                         <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">n</span> <span class="p">(</span><span class="k">the</span> <span class="o">,</span><span class="p">(</span><span class="nv">variable-type</span> <span class="nv">p</span> <span class="nv">env</span><span class="p">)</span> <span class="o">,</span><span class="nv">v</span><span class="p">))</span>
-</span><span class="line">                         <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">n</span> <span class="o">,</span><span class="nv">v</span><span class="p">)))</span>
-</span><span class="line">                   <span class="nv">places</span> <span class="nv">vals</span> <span class="nv">newvars</span><span class="p">)</span>
-</span><span class="line">       <span class="p">(</span><span class="nb">setf</span> <span class="o">,@</span><span class="p">(</span><span class="nb">mapcan</span> <span class="nf">#&#39;</span><span class="nb">list</span> <span class="nv">places</span> <span class="nv">newvars</span><span class="p">)))))</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Change “psetf” to “my-psetf” and the type information will be propagated in compile-time.</p>
-
-<h3 id="task-2-mutual-recursion-optimization">Task 2 Mutual-recursion Optimization</h3>
-
-<blockquote>
-  <p>Write a macro called “labels-tc” that does similar things as “label” but also does forced tail-call optimization when recursively calling functions defined in the same scope.</p>
-</blockquote>
-
-<p>This task is much more fun. You need to</p>
-
-<ul>
-  <li>Establish tagbody scope that covers all local functions</li>
-  <li>Still allow local functions being used in “funcall” and “apply”</li>
-  <li>Handle all variables in one scope</li>
-</ul>
-
-<p>My idea is to define an anonymous local function that includes all the definitions, and use a dispatch to jump to the right entry point. All other functions will call the anonymous one. As for variable handling, I currently don’t have a good solution without a full renaming. So it’s ignored and I simply combined all the variables (maybe an error checking is necessary).</p>
-
-<p>Here’s the code:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-</pre></td><td class="code"><pre><code class="common-lisp"><span class="line"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">labels-tc</span> <span class="p">(</span><span class="nv">definitions</span> <span class="k">&amp;body</span> <span class="nv">body</span><span class="p">)</span>
-</span><span class="line">  <span class="p">(</span><span class="nb">multiple-value-bind</span> <span class="p">(</span><span class="nv">names</span> <span class="nv">argss</span> <span class="nv">bodies</span> <span class="nv">jump-tags</span><span class="p">)</span>
-</span><span class="line">      <span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">d</span> <span class="nv">in</span> <span class="nv">definitions</span>
-</span><span class="line">            <span class="nv">for</span> <span class="nv">n</span> <span class="nb">=</span> <span class="p">(</span><span class="nb">first</span> <span class="nv">d</span><span class="p">)</span>
-</span><span class="line">            <span class="nv">for</span> <span class="nv">a</span> <span class="nb">=</span> <span class="p">(</span><span class="nb">second</span> <span class="nv">d</span><span class="p">)</span>
-</span><span class="line">            <span class="nv">for</span> <span class="nv">b</span> <span class="nb">=</span> <span class="p">(</span><span class="nb">rest</span> <span class="p">(</span><span class="nb">rest</span> <span class="nv">d</span><span class="p">))</span>
-</span><span class="line">            <span class="nv">for</span> <span class="nv">j</span> <span class="nb">=</span> <span class="p">(</span><span class="nb">gensym</span> <span class="p">(</span><span class="nb">symbol-name</span> <span class="nv">n</span><span class="p">))</span>
-</span><span class="line">            <span class="nv">collect</span> <span class="nv">n</span> <span class="nv">into</span> <span class="nv">ns</span>
-</span><span class="line">            <span class="nv">collect</span> <span class="nv">a</span> <span class="nv">into</span> <span class="nv">as</span>
-</span><span class="line">            <span class="nv">collect</span> <span class="nv">b</span> <span class="nv">into</span> <span class="nv">bs</span>
-</span><span class="line">            <span class="nv">collect</span> <span class="nv">j</span> <span class="nv">into</span> <span class="nv">js</span>
-</span><span class="line">            <span class="nv">finally</span> <span class="p">(</span><span class="nb">return</span> <span class="p">(</span><span class="nb">values</span> <span class="nv">ns</span> <span class="nv">as</span> <span class="nv">bs</span> <span class="nv">js</span><span class="p">)))</span>
-</span><span class="line">    <span class="p">(</span><span class="nv">alexandria:with-unique-names</span> <span class="p">(</span><span class="nv">entry</span> <span class="nv">exit</span> <span class="nv">name</span> <span class="nv">dispatch</span><span class="p">)</span>
-</span><span class="line">      <span class="o">`</span><span class="p">(</span><span class="k">labels</span> <span class="p">((</span><span class="o">,</span><span class="nv">entry</span> <span class="p">(</span><span class="o">,</span><span class="nv">name</span> <span class="k">&amp;key</span> <span class="o">,@</span><span class="p">(</span><span class="nb">remove-duplicates</span> <span class="p">(</span><span class="nb">apply</span> <span class="nf">#&#39;</span><span class="nb">append</span> <span class="nv">argss</span><span class="p">)))</span>
-</span><span class="line">                  <span class="p">(</span><span class="k">macrolet</span> <span class="p">(</span><span class="o">,@</span><span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">args</span> <span class="nv">jump-tag</span><span class="p">)</span>
-</span><span class="line">                                         <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">name</span> <span class="p">(</span><span class="k">&amp;rest</span> <span class="nv">arrrgs</span><span class="p">)</span>
-</span><span class="line">                                                 <span class="o">`</span><span class="p">(</span><span class="k">progn</span>
-</span><span class="line">                                                    <span class="p">(</span><span class="nv">my-psetf</span> <span class="o">,@</span><span class="p">(</span><span class="nb">mapcan</span> <span class="nf">#&#39;</span><span class="nb">list</span> <span class="ss">&#39;,args</span> <span class="nv">arrrgs</span><span class="p">))</span>
-</span><span class="line">                                                    <span class="p">(</span><span class="k">go</span> <span class="o">,</span><span class="ss">&#39;,jump-tag</span><span class="p">))))</span>
-</span><span class="line">                                 <span class="nv">names</span> <span class="nv">argss</span> <span class="nv">jump-tags</span><span class="p">))</span>
-</span><span class="line">                    <span class="p">(</span><span class="k">block</span> <span class="o">,</span><span class="nv">exit</span>
-</span><span class="line">                      <span class="p">(</span><span class="k">tagbody</span>
-</span><span class="line">                         <span class="o">,</span><span class="nv">dispatch</span>
-</span><span class="line">                         <span class="p">(</span><span class="nb">case</span> <span class="o">,</span><span class="nv">name</span>
-</span><span class="line">                           <span class="o">,@</span><span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">jump-tag</span><span class="p">)</span>
-</span><span class="line">                                       <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">name</span> <span class="p">(</span><span class="k">go</span> <span class="o">,</span><span class="nv">jump-tag</span><span class="p">)))</span>
-</span><span class="line">                              <span class="nv">names</span> <span class="nv">jump-tags</span><span class="p">))</span>
-</span><span class="line">                         <span class="o">,@</span><span class="p">(</span><span class="nb">mapcan</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">jump-tag</span> <span class="nv">body</span><span class="p">)</span>
-</span><span class="line">                                     <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">jump-tag</span>
-</span><span class="line">                                       <span class="p">(</span><span class="k">return-from</span> <span class="o">,</span><span class="nv">exit</span>
-</span><span class="line">                                         <span class="p">(</span><span class="k">locally</span> <span class="o">,@</span><span class="nv">body</span><span class="p">))))</span>
-</span><span class="line">                                   <span class="nv">jump-tags</span> <span class="nv">bodies</span><span class="p">)))))</span>
-</span><span class="line">                <span class="o">,@</span><span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">args</span><span class="p">)</span>
-</span><span class="line">                            <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">name</span> <span class="o">,</span><span class="nv">args</span>
-</span><span class="line">                                    <span class="p">(</span><span class="o">,</span><span class="nv">entry</span>
-</span><span class="line">                                     <span class="ss">&#39;,name</span>
-</span><span class="line">                                     <span class="o">,@</span><span class="p">(</span><span class="nb">mapcan</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">a</span><span class="p">)</span>
-</span><span class="line">                                                 <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="p">(</span><span class="nv">alexandria:make-keyword</span> <span class="nv">a</span><span class="p">)</span> <span class="o">,</span><span class="nv">a</span><span class="p">))</span>
-</span><span class="line">                                               <span class="nv">args</span><span class="p">))))</span>
-</span><span class="line">                    <span class="nv">names</span> <span class="nv">argss</span><span class="p">))</span>
-</span><span class="line">         <span class="p">(</span><span class="k">locally</span> <span class="o">,@</span><span class="nv">body</span><span class="p">)))))</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>So again, example:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class="common-lisp"><span class="line"><span class="p">(</span><span class="nv">labels-tc</span> <span class="p">((</span><span class="nb">oddp</span> <span class="p">(</span><span class="nv">n</span><span class="p">)</span>
-</span><span class="line">           <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="kt">fixnum</span> <span class="nv">n</span><span class="p">))</span>
-</span><span class="line">           <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">=</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class="line">               <span class="no">nil</span>
-</span><span class="line">               <span class="p">(</span><span class="nb">evenp</span> <span class="p">(</span><span class="nb">1-</span> <span class="nv">n</span><span class="p">))))</span>
-</span><span class="line">         <span class="p">(</span><span class="nb">evenp</span> <span class="p">(</span><span class="nv">m</span><span class="p">)</span>
-</span><span class="line">           <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="kt">fixnum</span> <span class="nv">m</span><span class="p">))</span>
-</span><span class="line">           <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">=</span> <span class="nv">m</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class="line">               <span class="no">t</span>
-</span><span class="line">               <span class="p">(</span><span class="nb">oddp</span> <span class="p">(</span><span class="nb">1-</span> <span class="nv">m</span><span class="p">)))))</span>
-</span><span class="line">  <span class="p">(</span><span class="nb">print</span> <span class="p">(</span><span class="nb">oddp</span> <span class="mi">21</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>will be expanded to:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-</pre></td><td class="code"><pre><code class="common-lisp"><span class="line"><span class="p">(</span><span class="k">labels</span> <span class="p">((</span><span class="ss">#:entry</span> <span class="p">(</span><span class="ss">#:name</span> <span class="k">&amp;key</span> <span class="nv">n</span> <span class="nv">m</span><span class="p">)</span>
-</span><span class="line">           <span class="p">(</span><span class="k">block</span> <span class="ss">#:exit</span>
-</span><span class="line">             <span class="p">(</span><span class="k">tagbody</span>
-</span><span class="line">                <span class="ss">#:dispatch</span>
-</span><span class="line">                <span class="p">(</span><span class="nb">case</span> <span class="ss">#:name</span>
-</span><span class="line">                  <span class="p">(</span><span class="nb">oddp</span> <span class="p">(</span><span class="k">go</span> <span class="ss">#:oddp</span><span class="p">))</span>
-</span><span class="line">                  <span class="p">(</span><span class="nb">evenp</span> <span class="p">(</span><span class="k">go</span> <span class="ss">#:evenp</span><span class="p">)))</span>
-</span><span class="line">                <span class="ss">#:oddp</span>
-</span><span class="line">                <span class="p">(</span><span class="k">return-from</span> <span class="ss">#:exit</span>
-</span><span class="line">                  <span class="p">(</span><span class="k">locally</span>
-</span><span class="line">                      <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="kt">fixnum</span> <span class="nv">n</span><span class="p">))</span>
-</span><span class="line">                    <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">=</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class="line">                        <span class="no">nil</span>
-</span><span class="line">                        <span class="p">(</span><span class="k">progn</span>
-</span><span class="line">                          <span class="p">(</span><span class="nb">psetf</span> <span class="nv">m</span> <span class="p">(</span><span class="nb">1-</span> <span class="nv">n</span><span class="p">))</span>
-</span><span class="line">                          <span class="p">(</span><span class="k">go</span> <span class="ss">#:evenp</span><span class="p">)))))</span>
-</span><span class="line">                <span class="ss">#:evenp</span>
-</span><span class="line">                <span class="p">(</span><span class="k">return-from</span> <span class="ss">#:exit</span>
-</span><span class="line">                  <span class="p">(</span><span class="k">locally</span>
-</span><span class="line">                      <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="kt">fixnum</span> <span class="nv">m</span><span class="p">))</span>
-</span><span class="line">                    <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">=</span> <span class="nv">m</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class="line">                        <span class="no">t</span>
-</span><span class="line">                        <span class="p">(</span><span class="k">progn</span>
-</span><span class="line">                          <span class="p">(</span><span class="nb">psetf</span> <span class="nv">n</span> <span class="p">(</span><span class="nb">1-</span> <span class="nv">m</span><span class="p">))</span>
-</span><span class="line">                          <span class="p">(</span><span class="k">go</span> <span class="ss">#:oddp</span><span class="p">))))))))</span>
-</span><span class="line">         <span class="p">(</span><span class="nb">oddp</span> <span class="p">(</span><span class="nv">n</span><span class="p">)</span>
-</span><span class="line">           <span class="p">(</span><span class="ss">#:entry</span> <span class="ss">&#39;oddp</span> <span class="ss">:n</span> <span class="nv">n</span><span class="p">))</span>
-</span><span class="line">         <span class="p">(</span><span class="nb">evenp</span> <span class="p">(</span><span class="nv">m</span><span class="p">)</span>
-</span><span class="line">           <span class="p">(</span><span class="ss">#:entry</span> <span class="ss">&#39;evenp</span> <span class="ss">:m</span> <span class="nv">m</span><span class="p">)))</span>
-</span><span class="line">  <span class="p">(</span><span class="nb">print</span> <span class="p">(</span><span class="nb">oddp</span> <span class="mi">21</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Note again that this version doesn’t handle variables properly except the simplest form. And as mentioned above, my-psetf has no effect here since type declarations are not visible in the scope of labels-tc.</p>
-
-<h3 id="benchmark-and-verification">Benchmark and Verification</h3>
-
-<p>Ok, here’s the fun part, benchmark and verifying the implementation in different implementations. Here’s the benchmark code:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-</pre></td><td class="code"><pre><code class="common-lisp"><span class="line"><span class="p">(</span><span class="nb">defun</span> <span class="nv">test</span> <span class="p">(</span><span class="nv">n</span><span class="p">)</span>
-</span><span class="line">  <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="kt">fixnum</span> <span class="nv">n</span><span class="p">)</span>
-</span><span class="line">           <span class="p">(</span><span class="k">optimize</span> <span class="nv">speed</span> <span class="p">(</span><span class="nv">safety</span> <span class="mi">0</span><span class="p">)))</span>
-</span><span class="line">  <span class="p">(</span><span class="nv">labels-tc</span> <span class="p">((</span><span class="nv">my-oddp</span> <span class="p">(</span><span class="nv">n</span><span class="p">)</span>
-</span><span class="line">                       <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="kt">fixnum</span> <span class="nv">n</span><span class="p">))</span>
-</span><span class="line">                       <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">=</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class="line">                           <span class="no">nil</span>
-</span><span class="line">                           <span class="p">(</span><span class="nv">my-evenp</span> <span class="p">(</span><span class="k">the</span> <span class="kt">fixnum</span> <span class="p">(</span><span class="nb">1-</span> <span class="nv">n</span><span class="p">)))))</span>
-</span><span class="line">              <span class="p">(</span><span class="nv">my-evenp</span> <span class="p">(</span><span class="nv">m</span><span class="p">)</span>
-</span><span class="line">                        <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="kt">fixnum</span> <span class="nv">m</span><span class="p">))</span>
-</span><span class="line">                        <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">=</span> <span class="nv">m</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class="line">                            <span class="no">t</span>
-</span><span class="line">                            <span class="p">(</span><span class="nv">my-oddp</span> <span class="p">(</span><span class="k">the</span> <span class="kt">fixnum</span> <span class="p">(</span><span class="nb">1-</span> <span class="nv">m</span><span class="p">))))))</span>
-</span><span class="line">    <span class="p">(</span><span class="nv">my-evenp</span> <span class="nv">n</span><span class="p">)))</span>
-</span><span class="line">
-</span><span class="line"><span class="p">(</span><span class="nb">time</span> <span class="p">(</span><span class="nv">test</span> <span class="p">(</span><span class="nb">expt</span> <span class="mi">2</span> <span class="mi">30</span><span class="p">)))</span>
-</span><span class="line"><span class="nv">=&gt;</span> <span class="no">T</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>And here’s the result:</p>
-
-<table border="2" rules="groups" cellspacing="0" cellpadding="6"><colgroup> <col align="left" /> <col align="right" /> <col align="right" /> </colgroup>
-<thead>
-<tr>
-<th scope="col">Common Lisp</th>
-<th scope="col">labels version (sec)</th>
-<th scope="col">labels-tc version (sec)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SBCL 1.0.48 (64bit)</td>
-<td>0.599</td>
-<td>0.594</td>
-</tr>
-<tr>
-<td>ABCL 0.25 (OpenJDK 1.6.0<sub>22</sub>)</td>
-<td>(java.lang.StackOverflowError)</td>
-<td>13.171</td>
-</tr>
-<tr>
-<td>AllegroCL 8.2 64bit</td>
-<td>10.17</td>
-<td>2.32</td>
-</tr>
-<tr>
-<td>ClozureCL 1.7 64bit</td>
-<td>1.664</td>
-<td>0.767</td>
-</tr>
-<tr>
-<td>Lispworks 6.0.1 64bit</td>
-<td>3.657</td>
-<td>2.468</td>
-</tr>
-<tr>
-<td>Clisp 2.48</td>
-<td>(Lisp stack overflow. RESET)</td>
-<td>27.002</td>
-</tr>
-<tr>
-<td>CMUCL 20B (32bit)</td>
-<td>0.57</td>
-<td>0.42</td>
-</tr>
-<tr>
-<td>ECL 11.1.1</td>
-<td>(Segmentation fault)</td>
-<td>16.218</td>
-</tr>
-</tbody>
-</table>
-
-<ul>
-  <li>OS: Ubuntu natty 11.04 x86_64 (CPU: Core2 3.0GHz)</li>
-  <li>AllegroCL needs compiler flag to turn on the optimization on.</li>
-  <li>Since CMUCL is 32bit, to avoid fixnum overflow, I changed the benchmark to (test (expt 2 28)) and looped 4 times.</li>
-</ul>
-
-<p>What amazed me is that my implementation is among the best with SBCL/CMUCL’s, so if your algorithm depends heavily on mutual tail-recursion, you can use this customized labels-tc without changing a single line of your code (but be aware of the variable handling!). And I think the reason other implementations don’t optimize enough is because many tail-recursion programs can be intuitively translated into ones using loop, however, in some situations, it is not case.</p>
-
-<p>TODO: Here’s the file for download.</p>
+  <div id="container">
+    <header>
+    <img src="http://huangjs.github.com/images/header.png" alt="Ivan Jovanovic in search for the next abstraction" />
+    <h1>in search for the next abstraction</h1>
+    </header>
+    <div id="main" role="main">
+      <div id="personal">
+  <ul class="social">
+      <li>I put my code on <a href="https://github.com/ivanjovanovic">GitHub</a></li>
+      <li>I hang mostly on <a href="https://plus.google.com/104326220116699351892">Google+</a> and <a href="https://twitter.com/jshuang">Twitter</a></li>
+      <li>I participate in organization of <a href="http://www.rhok.org" title="Random Hacks of Kindness">RHoK</a></li>
+      <li>I work at <a href="http://www.local.ch/en" title="Swiss PhoneBook">local.ch ag</a></li>
+  </ul>
+  <ul class="toolbox">
+    <li>You can grab my <a href="http://feeds.feedburner.com/IvanJovanovic">RSS Feed</a></li>
+  </ul>
+  <br style="clear:both;">
 
 </div>
-  
+
+<h3>Posts</h3>
+
+
+
+  <article>
+    <article>
+
+
+  <div class="article-read-more">
+    <p class="meta">
+      
+
+
+
+
+
   
 
 
-    </article>
-  
-  <div class="pagination">
+
+<time datetime="2011-06-20T14:49:00-07:00" pubdate  data-updated="true" >Jun 20<span>th</span>, 2011</time>
+      <a rel="full-article" href="http://huangjs.github.com/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/">Implemeting TCO &#8216;defun&#8217; and &#8216;labels&#8217; in Common Lisp</a>
+    </p>
+  </div>
+
+</article>
+
+
+  </article>
+
+<nav role="pagination">
+  <div>
     
-    <a href="/blog/archives">Blog Archives</a>
+    <a href="http://huangjs.github.com/archives">Blog Archives</a>
     
   </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Son yazılar</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2011/06/20/implemeting-tail-call-optimized-defun-and-labels-in-common-lisp/">Implemeting TCO &#8216;defun&#8217; and &#8216;labels&#8217; in Common Lisp</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>Github Depoları</h1>
-  <ul id="gh_repos">
-    <li class="loading">Güncelleniyor&#8230;</li>
-  </ul>
-  
-  Github&#8217;da <a href="https://github.com/huangjs">@huangjs</a>
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'huangjs',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>Twitter</h1>
-  <ul id="tweets">
-    <li class="loading">Güncelleniyor&#8230;</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("jshuang", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/jshuang" class="twitter-follow-button" data-show-count="false">@jshuang&#8217;i takip et</a>
-  
-</section>
-
-
-
-<section class="googleplus">
-  <h1>
-    <a href="https://plus.google.com/jianshi.huang@gmail.com?rel=author">
-      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
-      Google+
-    </a>
-  </h1>
-</section>
-
-
-
-  
-</aside>
+</nav>
 
     </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Jianshi Huang -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
+    <footer>
 
-</footer>
-  
+    </footer>
+  </div> <!--! end of #container -->
 
-<script type="text/javascript">
-      var disqus_shortname = 'jianshi-blog';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
+    <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
 
 
+  <!-- scripts concatenated and minified via ant build script-->
+  <script defer src="/javascripts/app.js"></script>
+  <!-- end scripts-->
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+	
+
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+ 
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
 
 
 
@@ -724,16 +146,16 @@ as ABCL or ECL.</p>
 
 
   <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-34234684-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
-
-
 
 
 
